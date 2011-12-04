@@ -3,7 +3,7 @@
 Plugin Name: Facebook Social Plugin Widgets
 Plugin URI: http://www.christopherguitar.net/wordpress/
 Description: Adds three facebook social plugins as wordpress widgets: Facebook Recommendations, Facebook Activity Feed, and the Facebook Like Box
-Version: 1.1
+Version: 1.2
 Author: Christopher Davis
 Author URI: http://www.christopherguitar.net
 License: GPL2

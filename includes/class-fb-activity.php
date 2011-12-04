@@ -91,14 +91,14 @@ if( !class_exists( 'CD_FBSP_Activity_Widget' ) )
 		{
 			$instance = $old_instance;
 			$instance['title'] = strip_tags( $new_instance['title'] );
-			$instance['url'] = esc_url( $new_instance['url'], array( 'http' ) );
+			$instance['url'] = isset( $new_instance['url'] ) ? esc_url( $new_instance['url'], array( 'http' ) ) : '';
 			$instance['width'] = absint( $new_instance['width'] );
 			$instance['height'] = absint( $new_instance['height'] );
 			$instance['border_color'] = strip_tags( $new_instance['border_color'] );
 			$instance['color_scheme'] = strip_tags( $new_instance['color_scheme'] );
-			$instance['font'] = strip_tags( $new_instance['font'] );
-			$instance['show_header'] = $new_instance['show_header'] ? 'on' : 'off';
-			$instance['show_recommendations'] = $new_instance['show_recommendations'] ? 'on' : 'off';
+			$instance['font'] = isset( $new_instance['font'] ) ? strip_tags( $new_instance['font'] ) : '';
+			$instance['show_header'] = isset(  $new_instance['show_header'] ) && $new_instance['show_header'] ? 'on' : 'off';
+			$instance['show_recommendations'] = isset( $new_instance['show_recommendations'] ) && $new_instance['show_recommendations'] ? 'on' : 'off';
 			
 			return $instance;
 		}

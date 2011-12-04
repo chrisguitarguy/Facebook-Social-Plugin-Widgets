@@ -1,7 +1,7 @@
 Facebook Social Plugin Widgets 
 ===
 
-Facebook Social Plugin Widgets adds 3 of the Facebook social plugins to wordpress as widgets: the Like Box, Recommendations, & the Activity Feed.
+Facebook Social Plugin Widgets adds 3 of the Facebook social plugins to WordPress as widgets: the Like Box, Recommendations, & the Activity Feed.
 
 Description
 ------------

@@ -29,7 +29,8 @@ if( !class_exists( 'CD_FBSP_Like_Widget' ) )
 				'show_faces'	=> 'on',
 				'border_color' 	=> '',
 				'show_stream' 	=> 'on',
-				'show_header' 	=> 'off'
+				'show_header' 	=> 'off',
+				'height'		=> 400
 			);
 			
 			$instance = wp_parse_args( (array) $instance, $defaults );
@@ -47,6 +48,10 @@ if( !class_exists( 'CD_FBSP_Like_Widget' ) )
 			<p>
 				<label for="cd-fb-width"><?php _e( 'Width:', 'cd-fbspw' ); ?></label>
 				<input id="cd-fb-width" class="widefat" name="<?php echo $this->get_field_name( 'width' ); ?>" type="text" value="<?php echo esc_attr( $width ); ?>" />
+			</p>
+			<p>
+				<label for="cd-fba-height"><?php _e( 'Height:', 'cd-fbspw' ); ?></label>
+				<input id="cd-fba-height" class="widefat" name="<?php echo $this->get_field_name( 'height' ); ?>" type="text" value="<?php echo esc_attr( $height ); ?>" />
 			</p>
 			<p>
 				<label for="cd-fb-border"><?php _e( 'Border Color:', 'cd-fbspw' ); ?></label>
@@ -77,14 +82,15 @@ if( !class_exists( 'CD_FBSP_Like_Widget' ) )
 		function update( $new_instance, $old_instance )
 		{
 			$instance = $old_instance;
-			$instance['title'] = strip_tags( $new_instance['title'] );
-			$instance['url'] = esc_url( $new_instance['url'], array( 'http' ) );
-			$instance['width'] = absint( $new_instance['width'] );
-			$instance['border_color'] = strip_tags( $new_instance['border_color'] );
+			$instance['title'] = isset( $new_instance['title'] ) ? strip_tags( $new_instance['title'] ) : '';
+			$instance['url'] = isset( $new_instance['url'] ) ? esc_url( $new_instance['url'], array( 'http' ) ) : '';
+			$instance['width'] = isset( $new_instance['width'] ) ? absint( $new_instance['width'] ) : 300;
+			$instance['height'] = isset( $new_instance['height'] ) ? absint( $new_instance['height'] ) : 400;
+			$instance['border_color'] = isset( $new_instance['border_color'] ) ? strip_tags( $new_instance['border_color'] ) : '';
 			$instance['color_scheme'] = strip_tags( $new_instance['color_scheme'] );
-			$instance['show_faces'] = $new_instance['show_faces'] ? 'on' : 'off';
-			$instance['show_stream'] = $new_instance['show_stream'] ? 'on' : 'off';
-			$instance['show_header'] = $new_instance['show_header'] ? 'on' : 'off';
+			$instance['show_faces'] = isset( $new_instance['show_faces'] ) && $new_instance['show_faces'] ? 'on' : 'off';
+			$instance['show_stream'] = isset( $new_instance['show_stream'] ) && $new_instance['show_stream'] ? 'on' : 'off';
+			$instance['show_header'] = isset( $new_instance['show_header'] ) && $new_instance['show_header'] ? 'on' : 'off';
 			
 			return $instance;
 		}
@@ -96,6 +102,7 @@ if( !class_exists( 'CD_FBSP_Like_Widget' ) )
 			// Get our widget variables
 			$title = apply_filters( 'widget_title', $instance['title'] );
 			$width = empty( $instance['width'] ) ? ' width="300"' : ' width="' . $instance['width'] . '"';
+			$height = empty( $instance['height'] ) ? ' height="400"' : ' height="' . $instance['height'] . '"';
 			$url = empty( $instance['url'] ) ? ' href="http://www.facebook.com/WordPress"' : ' href="' . $instance['url'] . '"';
 			$border = empty( $instance['border_color'] ) ? ' border_color=""' : ' border_color="' . $instance['border_color'] . '"';
 			$color = $instance['color_scheme'] == 'light' ? '' : ' colorscheme="dark"';
@@ -109,7 +116,7 @@ if( !class_exists( 'CD_FBSP_Like_Widget' ) )
 			{
 				echo $before_title . $title . $after_title;
 			}
-			echo '<fb:like-box' . $url . $width . $border . $color . $faces . $stream . $header . '></fb:like-box>';
+			echo '<fb:like-box' . $url . $width . $height . $border . $color . $faces . $stream . $header . '></fb:like-box>';
 			echo $after_widget;
 			
 		}

@@ -85,14 +85,14 @@ if( !class_exists( 'CD_FBSP_Recommends_Widget' ) )
 		function update( $new_instance, $old_instance )
 		{
 			$instance = $old_instance;
-			$instance['title'] = strip_tags( $new_instance['title'] );
-			$instance['url'] = esc_url( $new_instance['url'], array( 'http' ) );
-			$instance['width'] = absint( $new_instance['width'] );
-			$instance['height'] = absint( $new_instance['height'] );
-			$instance['border_color'] = strip_tags( $new_instance['border_color'] );
+			$instance['title'] = isset( $new_instance['title'] ) ? strip_tags( $new_instance['title'] ) : '';
+			$instance['url'] = isset( $new_instance['url'] ) ? esc_url( $new_instance['url'], array( 'http' ) ) : '';
+			$instance['width'] = isset( $new_instance['width'] ) ? absint( $new_instance['width'] ) : 300;
+			$instance['height'] = isset( $new_instance['height'] ) ? absint( $new_instance['height'] ) : 400;
+			$instance['border_color'] = isset( $new_instance['border_color'] ) ? strip_tags( $new_instance['border_color'] ) : '';
 			$instance['color_scheme'] = strip_tags( $new_instance['color_scheme'] );
-			$instance['font'] = strip_tags( $new_instance['font'] );
-			$instance['show_header'] = $new_instance['show_header'] ? 'on' : 'off';
+			$instance['font'] = isset( $new_instance['font'] ) ? strip_tags( $new_instance['font'] ) : '';
+			$instance['show_header'] = isset( $new_instance['show_header'] ) && $new_instance['show_header'] ? 'on' : 'off';
 			
 			return $instance;
 		}
