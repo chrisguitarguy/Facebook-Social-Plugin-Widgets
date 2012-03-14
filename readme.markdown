@@ -8,7 +8,7 @@ Description
 
 Facebook Social Plugin Widgets is a lightweight plugin that add three widgets to your WordPress arsenal: a Facebook Like Box, the Facebook Recommendations widget, and the Activity Feed.  This means you won't have to go to the [social plugin](http://developers.facebook.com/docs/plugins/ "social plugin") page anymore.
 
-The plugin loads XFBML versions of each of the social plugins, and includes the facebook `all.js` in the footer of the site only if one of the widgets is in use.
+The plugin loads XFBML versions of each of the social plugins, and includes the facebook `all.js` in the footer of your site.
 
 Installation
 ---------------
