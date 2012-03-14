@@ -12,11 +12,6 @@ if( !class_exists( 'CD_FBSP_Recommends_Widget' ) )
 			);
 			
 			$this->WP_Widget( 'CD_FBSP_Recommends_Widget', __( 'Facebook Recommendations', 'cd-fbspw' ), $widget_ops );
-
-			if( is_active_widget( false, false, $this->id_base ) && !is_admin() )
-			{
-				add_action( 'wp_print_scripts', array( &$this, 'scripts' ) );	
-			}
 		}
 		
 		function form( $instance )
@@ -86,7 +81,7 @@ if( !class_exists( 'CD_FBSP_Recommends_Widget' ) )
 		{
 			$instance = $old_instance;
 			$instance['title'] = isset( $new_instance['title'] ) ? strip_tags( $new_instance['title'] ) : '';
-			$instance['url'] = isset( $new_instance['url'] ) ? esc_url( $new_instance['url'], array( 'http' ) ) : '';
+			$instance['url'] = isset( $new_instance['url'] ) ? esc_url( $new_instance['url'], array( 'http', 'https' ) ) : '';
 			$instance['width'] = isset( $new_instance['width'] ) ? absint( $new_instance['width'] ) : 300;
 			$instance['height'] = isset( $new_instance['height'] ) ? absint( $new_instance['height'] ) : 400;
 			$instance['border_color'] = isset( $new_instance['border_color'] ) ? strip_tags( $new_instance['border_color'] ) : '';
@@ -119,14 +114,7 @@ if( !class_exists( 'CD_FBSP_Recommends_Widget' ) )
 			}
 			echo '<fb:recommendations' . $url . $width . $height . $border . $color . $font . $header . '></fb:recommendations>';
 			echo $after_widget;
-			
 		}
-		
-		function scripts()
-		{
-			wp_enqueue_script( 'xfbml' );	
-		}	
-		
 	} // end class
 	
 	/**
@@ -139,5 +127,3 @@ if( !class_exists( 'CD_FBSP_Recommends_Widget' ) )
 	}
 	
 } // end class_exists
-
-?>

@@ -49,17 +49,36 @@ Screenshots
 Changelog
 ----------------
 
-### 1.0
+### 1.3
 
-* The first release!
-* Supports the facebook like box, activity feed, and recommendations
+* Bug fixes to get the widgets working again due to Facebook changes
+* Switched to an async script
+
+### 1.2
+
+* Support for height on the like box
 
 ### 1.1
 
 * Adds an additional filter to lanaguage attributes to render the xmlns:fb="..." <head> attributes (required for IE support)
 
+### 1.0
+
+* The first release!
+* Supports the facebook like box, activity feed, and recommendations
+
+
 Upgrade Notice
 -------------------
+
+### 1.3
+
+* This version fixes some major issues that were causing a few JS errors
+
+### 1.2
+
+* Adds control for the height of the like box
+
 ### 1.1
 
 * Adds support for IE.

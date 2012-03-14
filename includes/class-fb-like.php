@@ -11,12 +11,7 @@ if( !class_exists( 'CD_FBSP_Like_Widget' ) )
 				'description' 	=> __('Displays a Facebook Like Box', 'cd-fbspw' ),
 			);
 			
-			$this-> WP_Widget( 'CD_FBSP_Like_Widget', __('Facebook Like Box', 'cd-fbspw' ), $widget_ops );
-			
-			if( is_active_widget( false, false, $this->id_base ) && !is_admin() )
-			{
-				add_action( 'wp_print_scripts', array( &$this, 'scripts' ) );	
-			}
+			$this->WP_Widget( 'CD_FBSP_Like_Widget', __('Facebook Like Box', 'cd-fbspw' ), $widget_ops );
 		}
 		
 		function form( $instance )
@@ -83,7 +78,7 @@ if( !class_exists( 'CD_FBSP_Like_Widget' ) )
 		{
 			$instance = $old_instance;
 			$instance['title'] = isset( $new_instance['title'] ) ? strip_tags( $new_instance['title'] ) : '';
-			$instance['url'] = isset( $new_instance['url'] ) ? esc_url( $new_instance['url'], array( 'http' ) ) : '';
+			$instance['url'] = isset( $new_instance['url'] ) ? esc_url( $new_instance['url'], array( 'http', 'https' ) ) : '';
 			$instance['width'] = isset( $new_instance['width'] ) ? absint( $new_instance['width'] ) : 300;
 			$instance['height'] = isset( $new_instance['height'] ) ? absint( $new_instance['height'] ) : 400;
 			$instance['border_color'] = isset( $new_instance['border_color'] ) ? strip_tags( $new_instance['border_color'] ) : '';
@@ -118,13 +113,7 @@ if( !class_exists( 'CD_FBSP_Like_Widget' ) )
 			}
 			echo '<fb:like-box' . $url . $width . $height . $border . $color . $faces . $stream . $header . '></fb:like-box>';
 			echo $after_widget;
-			
 		}
-		
-		function scripts()
-		{
-			wp_enqueue_script( 'xfbml' );	
-		}	
 	} // end class
 	
 	/**
@@ -137,5 +126,3 @@ if( !class_exists( 'CD_FBSP_Like_Widget' ) )
 	}
 	
 } // end class_exists
-
-?>

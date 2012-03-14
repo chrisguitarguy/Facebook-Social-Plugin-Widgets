@@ -12,11 +12,6 @@ if( !class_exists( 'CD_FBSP_Activity_Widget' ) )
 			);
 			
 			$this->WP_Widget( 'CD_FBSP_Activity_Widget', __( 'Facebook Activity Feed', 'cd-fbspw' ), $widget_ops );
-			
-			if( is_active_widget( false, false, $this->id_base ) && !is_admin() )
-			{
-				add_action( 'wp_print_scripts', array( &$this, 'scripts' ) );	
-			}
 		}
 		
 		function form( $instance )
@@ -91,7 +86,7 @@ if( !class_exists( 'CD_FBSP_Activity_Widget' ) )
 		{
 			$instance = $old_instance;
 			$instance['title'] = strip_tags( $new_instance['title'] );
-			$instance['url'] = isset( $new_instance['url'] ) ? esc_url( $new_instance['url'], array( 'http' ) ) : '';
+			$instance['url'] = isset( $new_instance['url'] ) ? esc_url( $new_instance['url'], array( 'http', 'https' ) ) : '';
 			$instance['width'] = absint( $new_instance['width'] );
 			$instance['height'] = absint( $new_instance['height'] );
 			$instance['border_color'] = strip_tags( $new_instance['border_color'] );
@@ -126,14 +121,7 @@ if( !class_exists( 'CD_FBSP_Activity_Widget' ) )
 			}
 			echo '<fb:activity' . $url . $width . $height . $border . $color . $font . $header . $recommendations . '></fb:activity>';
 			echo $after_widget;
-			
 		}
-		
-		function scripts()
-		{
-			wp_enqueue_script( 'xfbml' );	
-		}	
-		
 	} // end class
 	
 	/**
@@ -146,5 +134,3 @@ if( !class_exists( 'CD_FBSP_Activity_Widget' ) )
 	}
 	
 } // end class_exists
-
-?>
